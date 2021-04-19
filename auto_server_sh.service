@@ -1,0 +1,16 @@
+[Unit]
+Description=Auto_start_sh
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+ExecStart=/root/sh/auto_start_sh.sh start
+ExecStop=/root/sh/auto_start_sh.sh stop
+ExecReload=/root/sh/auto_start_sh.sh graceful
+PrivateTmp=true
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
+Alias=Auto_start_sh
+
